@@ -32,34 +32,39 @@ class _HomeState extends State<Home> {
   _atualizar() async {
     var preferencias = await SharedPreferences.getInstance();
     setState(() {
+      // Nome
       if (preferencias.getString("nome") == null) {
         _controlerNome.text = "";
       } else {
         _controlerNome.text = preferencias.getString("nome");
       }
 
+      // Idade.
       if (preferencias.getInt("idade") == null) {
         _controlerIdade.text = "";
       } else {
         _controlerIdade.text = preferencias.getInt("idade").toString();
       }
 
+      // Salário.
       if (preferencias.getDouble("salario") == null) {
         _controlerSalario.text = "";
       } else {
         _controlerSalario.text = preferencias.getDouble("salario").toString();
       }
 
+      // Função.
       if (preferencias.getInt("funcao") == null) {
-        _controlerIdade.text = "";
+        _controlerFuncao.text = "";
       } else {
-        _controlerIdade.text = preferencias.getInt("funcao").toString();
+        _controlerFuncao.text = preferencias.getInt("funcao").toString();
       }
 
+      // Local de trabalho.
       if (preferencias.getDouble("localTrabalho") == null) {
-        _controlerSalario.text = "";
+        _controlerLocalTrabalho.text = "";
       } else {
-        _controlerSalario.text = preferencias.getDouble("localTrabalho").toString();
+        _controlerLocalTrabalho.text = preferencias.getDouble("localTrabalho").toString();
       }
     });
   }
@@ -69,10 +74,14 @@ class _HomeState extends State<Home> {
     preferencias.remove("nome");
     preferencias.remove("idade");
     preferencias.remove("salario");
+    preferencias.remove("funcao");
+    preferencias.remove("localTrabalho");
     setState(() {
       _controlerNome.text = "";
       _controlerIdade.text = "";
       _controlerSalario.text = "";
+      _controlerFuncao.text = "";
+      _controlerLocalTrabalho.text = "";
     });
   }
 
@@ -100,13 +109,23 @@ class _HomeState extends State<Home> {
                 ),
                 TextField(
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(labelText: "Digite a idade:"),
+                  decoration: InputDecoration(labelText: "Digite a Idade:"),
                   controller: _controlerIdade,
                 ),
                 TextField(
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(labelText: "Digite o Salário:"),
                   controller: _controlerSalario,
+                ),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(labelText: "Digite a Função:"),
+                  controller: _controlerFuncao,
+                ),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(labelText: "Digite o Local de Trabalho:"),
+                  controller: _controlerLocalTrabalho,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
