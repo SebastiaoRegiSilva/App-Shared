@@ -16,6 +16,8 @@ class _HomeState extends State<Home> {
   TextEditingController _controlerNome = TextEditingController();
   TextEditingController _controlerIdade = TextEditingController();
   TextEditingController _controlerSalario = TextEditingController();
+  TextEditingController _controlerFuncao = TextEditingController();
+  TextEditingController _controlerLocalTrabalho = TextEditingController();
   bool inicio = true;
 
   _gravar() async {
@@ -23,6 +25,8 @@ class _HomeState extends State<Home> {
     await preferencias.setString("nome", _controlerNome.text);
     await preferencias.setInt("idade", int.parse(_controlerIdade.text));
     await preferencias.setDouble("salario", double.parse(_controlerSalario.text));
+    await preferencias.setString("funcao", _controlerFuncao.text);
+    await preferencias.setString("localTrabalho", _controlerLocalTrabalho.text);
   }
 
   _atualizar() async {
@@ -33,15 +37,29 @@ class _HomeState extends State<Home> {
       } else {
         _controlerNome.text = preferencias.getString("nome");
       }
+
       if (preferencias.getInt("idade") == null) {
         _controlerIdade.text = "";
       } else {
         _controlerIdade.text = preferencias.getInt("idade").toString();
       }
+
       if (preferencias.getDouble("salario") == null) {
         _controlerSalario.text = "";
       } else {
         _controlerSalario.text = preferencias.getDouble("salario").toString();
+      }
+
+      if (preferencias.getInt("funcao") == null) {
+        _controlerIdade.text = "";
+      } else {
+        _controlerIdade.text = preferencias.getInt("funcao").toString();
+      }
+
+      if (preferencias.getDouble("localTrabalho") == null) {
+        _controlerSalario.text = "";
+      } else {
+        _controlerSalario.text = preferencias.getDouble("localTrabalho").toString();
       }
     });
   }
